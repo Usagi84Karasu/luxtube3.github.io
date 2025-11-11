@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Compte Discord</title>
+  <style>
+    body { font-family: Arial; text-align:center; padding:40px; }
+    .card { display:inline-block; background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px #ccc; }
+    img { width:80px; border-radius:50%; }
+    a.btn { display:inline-block; margin-top:15px; background:#5865F2; color:white; padding:10px 20px; border-radius:5px; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="card" id="account">
+    <h2>Connexion Discord</h2>
+    <a class="btn" href="/auth/discord">Se connecter</a>
+  </div>
+
+  <script>
+    fetch('/api/me')
+      .then(r=>r.json())
+      .then(data=>{
+        if (data.loggedIn) {
+          const u=data.user;
+          document.getElementById('account').innerHTML=`
+            <img src="${u.avatar}" alt="pdp">
+            <h2>${u.username}</h2>
+            <p>ID : ${u.id}</p>
+            <a href="/logout" class="btn" style="background:red;">Se déconnecter</a>
+          `;
+        }
+      });
+  </script>
+</body>
+</html>
