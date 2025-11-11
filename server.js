@@ -36,8 +36,8 @@ const CALLBACK_URL = "http://localhost:3000/auth/discord/callback";
 passport.use(
   new DiscordStrategy(
     {
-      clientID: 1379115115353342053,
-      clientSecret: byz6VxBG3xDsIcYSOw1V1vFNFL7PboGi,
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
       callbackURL: CALLBACK_URL,
       scope: ["identify"],
     },
