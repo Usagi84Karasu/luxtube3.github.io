@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>MiniTube Shorts</title>
+  <style>
+    body { font-family: Arial; background:#f0f0f0; text-align:center; }
+    video { width:200px; height:350px; margin:10px; border-radius:15px; }
+  </style>
+</head>
+<body>
+  <h1>📱 Shorts</h1>
+  <div id="shorts"></div>
+  <script>
+    fetch('/api/videos?type=short')
+      .then(r=>r.json())
+      .then(videos=>{
+        const div=document.getElementById('shorts');
+        div.innerHTML=videos.map(v=>
+          `<div>
+            <h3>${v.title}</h3>
+            <video controls src="/uploads/${v.filename}"></video>
+          </div>`
+        ).join('');
+      });
+  </script>
+</body>
+</html>
